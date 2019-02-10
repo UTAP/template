@@ -1,0 +1,7 @@
+? var
+!   var
+
+var = -2 + var
+! var
+run
+3
