@@ -27,7 +27,7 @@
 \AtBeginDocument{
     \tolerance=5000
     \setlength{\parskip}{2ex plus1mm minus1mm}
-    \settextfont{XBNiloofar}
+    \settextfont[Path={./fonts/}, BoldFont={XB NiloofarBd.ttf}, BoldItalicFont={XB NiloofarBdIt.ttf}, ItalicFont={XB NiloofarIt.ttf}]{XB Niloofar.ttf}
     \setlatintextfont[Scale=0.8]{DejaVu Serif}
     \setmonofont[Scale=0.8]{DejaVu Sans Mono}
     \renewcommand{\labelitemi}{$\circ$}
@@ -65,7 +65,7 @@
             \node [anchor=east, inner sep=0]  at (\textwidth-\parindent-\logosize,\logosize / 2 - \baselineskip) 
             {\small\rl{استاد: \textbf{\@lecturer}}};
             \node [anchor=west, inner sep=0]  at (-\parindent,\logosize / 2 - \baselineskip)
-            {\small\rl{طراح: \textbf{\@author}}};
+            {\small\rl{طراحان: \textbf{\@author}}};
             \if\@deadline
             \else
             \node [anchor=west, inner sep=0]  at (-\parindent,\logosize / 2 - 2 \baselineskip)
