@@ -15,209 +15,209 @@
 \graphicspath{{./img/}}
 
 \lstdefinelanguage{zabanche}{
-    morekeywords={run}
+	morekeywords={run}
 }
 \lstdefinelanguage{diff}{
-    morecomment=[f][\color{Black}]{---},
-    morecomment=[f][\color{Red}]<,
-    morecomment=[f][\color{Green}]>,
-    identifierstyle=\color{Cyan},
-    basicstyle=\small\ttfamily\color{Cyan},
+	morecomment=[f][\color{Black}]{---},
+	morecomment=[f][\color{Red}]<,
+	morecomment=[f][\color{Green}]>,
+	identifierstyle=\color{Cyan},
+	basicstyle=\small\ttfamily\color{Cyan},
 }
 
 \begin{document}
-    \maketitle
-
-    \section{مفسر زبانچه}
-
-    هدف این تمرین نوشتن مفسر برای یک زبان برنامه‌نویسی بسیار ساده به نام \textbf{زبانچه} است. مثال زیر یک نمونه‌ای کوچک از برنامه‌های زبانچه است.
-
-    \begin{latin}
-    \lstinputlisting[numbers=left,frame=leftline,language=zabanche,lastline=7]{testcases/1.in}
-    \end{latin}
-
-    در زبانچه سه نوع دستور وجود دارد:
-
-    \begin{description}[leftmargin=6em,style=nextline,font=\labelitemi\quad\bfseries]
-    \item[ورودی]
-    دستور ورودی به شکل \lr{\lstinline[language=zabanche]{? variable}} است که در آن \lr{\lstinline[language=zabanche]{variable}} نام یک متغیر است. اجرای این دستور موجب می‌شود که مفسر منتظر گرفتن یک عدد صحیح از ورودی بماند تا کاربر عدد را وارد کند.
-    \item[خروجی]
-    دستور خروجی به شکل \lr{\lstinline[language=zabanche]{! variable}} است که در آن \lr{\lstinline[language=zabanche]{variable}} نام یک متغیر است. اجرای این دستور موجب می‌شود که مفسر مقدار متغیر مربوطه را در یک خط مجزا در خروجی بنویسد.
-    \item[جایگزینی]
-    شکل این دستور \lr{\lstinline[language=zabanche]{variable = expression}} است که با اجرای آن عبارت \lr{\lstinline[language=zabanche]{expression}} ارزشیابی شده، مقدار آن در متغیر \lr{\lstinline[language=zabanche]{variable}} گذاشته می‌شود.
-    \end{description}
-
-    عبارت‌ها در زبانچه از ترکیب تعدادی متغیر و عدد ثابت با عملگرهای جمع و تفریق به دست می‌آیند. تمام متغیرها و ثابت‌ها مقدار عدد صحیح دارند. نیازی به تعریف متغیرها نیست و اگر متغیری پیش از این که مقدار بگیرد استفاده شود، به طور پیش‌فرض حاوی مقدار صفر فرض می‌شود. به این ترتیب، اگر به ورودی برنامه‌ی فوق به ترتیب مقادیر ۳ و ۸ داده شود، خروجی برنامه دو عدد ۱۳ و ۱۰ خواهد بود که در دو خط جداگانه نوشته می‌شوند. دقت کنید که مقدار متغیر \lr{n} در خط قبل از آخر برابر صفر در نظر گرفته می‌شود.
-
-    نام متغیرها در یک برنامه‌ی زبانچه ترکیبی از حروف بزرگ و کوچک و ارقام است و حتماً با یک حرف شروع می‌شود. حروف بزرگ و کوچک متمایز فرض می‌شوند. فرض کنید اعداد ثابت نامنفی هستند و در یک نوع داده‌ی\LTRfootnote{data type} ۳۲‌بیتی جا می‌شوند. در دو طرف اعداد و اسامی متغیرها و عملگرها می‌تواند تعداد دلخواهی (صفر یا بیشتر) فاصله‌ی خالی باشد. هر دستور در یک خط نوشته می‌شود و خط‌های خالی در برنامه نادیده گرفته می‌شوند.
-
-    برنامه‌ی شما یک برنامه‌ی زبانچه را به همراه یک ورودی برای آن دریافت می‌کند و خروجی برنامه‌ی زبانچه را به ازای آن ورودی مشخص می‌کند.
-
-    برای نگهداری مقادیر متغیرها می‌توانید از کلاس \lr{\lstinline{map}} که در سرآیند\LTRfootnote{header} \lr{\lstinline{map}} در دسترس است استفاده کنید.
-    برای خواندن یک خط کامل از ورودی نیز می‌توانید از تابع \lr{\lstinline{getline}} در سرآیند \lr{\lstinline{iostream}} کمک بگیرید.
-
-    \subsection{ورودی}
-
-    ورودی برنامه دو بخش دارد: برنامه‌ی زبانچه و ورودی برنامه‌ی زبانچه.    
-    بخش اول برنامه‌ی زبانچه است که در انتهای آن خطی وجود دارد که حاوی رشته‌ی \lr{\lstinline[language=zabanche]{run}} است.
-    بعد از این خط ورودی برنامه‌ی زبانچه می‌آید. این ورودی شامل تعدادی خط است که هر کدام حاوی یک عدد صحیح نامنفی است. این اعداد به دستورهای ورودی برنامه‌ی زبانچه داده می‌شوند.
-    
-    پایان ورودی با نویسه‌ی\LTRfootnote{character} پایان فایل (\lr{EOF}) مشخص می‌شود. در خط فرمان لینوکس می‌توانید با ترکیب \lr{Ctrl + D} این نویسه را ارسال کنید.
-
-    \subsection{خروجی}
-    
-    خروجی برنامه‌ی زبانچه را در خروجی بنویسید.
-
-    اگر برنامه‌ی زبانچه دارای خطای نحوی باشد \textbf{بدون اجرای برنامه} رشته‌ی \lr{\texttt{Syntax error at line }n} را بنویسید که در آن \lr{n} شماره‌ی اولین خطی از برنامه‌ی زبانچه است که خطا دارد.
-
-    اگر ورودی برنامه‌ی زبانچه کم‌تر از مواردی که مورد انتظار برنامه است ورودی مشخص کرده باشد، مثلاً در برنامه چهار دستور ورودی است اما ورودی فقط سه عدد را مشخص کرده است، برنامه‌ی زبانچه را تا جایی که امکان دارد اجرا کنید و خروجی‌ها را بنویسید و در انتها رشته‌ی \lr{\texttt{Unexpected end of input}} را در خروجی بنویسید.
-
-
-    \subsection{ورودی و خروجی نمونه}
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            ورودی نمونه & خروجی نمونه\\
-            \hline
-            \hline
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/1.in}
-            \end{minipage}\end{latin}
-            &
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \verbatiminput{testcases/1.sol}
-            \begin{verbatim}
-
-
-
-
-
-
-
-            \end{verbatim}
-            \end{minipage}\end{latin}
-            \\
-            \hline
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/2.in}
-            \end{minipage}\end{latin}
-            &
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \verbatiminput{testcases/2.sol}
-            \begin{verbatim}
-
-
-
-
-            \end{verbatim}
-            \end{minipage}\end{latin}
-            \\
-            \hline
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/3.in}
-            \end{minipage}\end{latin}
-            &
-            \begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
-            \verbatiminput{testcases/3.sol}
-            \begin{verbatim}
-
-
-
-
-
-            \end{verbatim}
-            \end{minipage}\end{latin}
-            \\
-            \hline
-        \end{tabular}
-    \end{table}
-    
-    \section{نحوه‌ی تحویل}
-
-    برنامه‌ی خود را با نام \lr{A1-SID.cpp} در صفحه‌ی \lr{CECM} درس بارگذاری کنید که \lr{SID} شماره‌ی دانشجویی شماست؛ برای مثال اگر شماره‌ی دانشجویی شما ۸۱۰۱۹۷۹۹۹ باشد، نام پرونده‌ی شما باید \lr{A1-810197999.cpp} باشد.
-
-    \begin{itemize}
-        \item برنامه‌ی شما باید در سیستم‌عامل لینوکس و با مترجم \lr{g++} با استاندارد \lr{\texttt{c++11}} ترجمه و در زمان معقول برای ورودی‌های آزمون اجرا شود.
-        \item از صحت قالب\LTRfootnote{format} ورودی‌ها و خروجی‌های برنامه‌ی خود مطمئن شوید.
-        \item رعایت سبک برنامه‌نویسی درست و تمیز~بودن برنامه‌ی شما در نمره‌ی تمرین تأثیر زیادی دارد.
-        \item هدف این تمرین یادگیری شماست. لطفاً تمرین را خودتان انجام دهید. در صورت کشف تقلب مطابق قوانین درس با آن برخورد خواهد شد.
-    \end{itemize}
-
-    \appendix
-
-    \section{مقایسه‌ی خروجی برنامه با خروجی مورد انتظار\label{sec:diff}}
-
-    مقایسه‌ی خروجی برنامه با خروجی مورد انتظار با چشم شاید برای برنامه‌های کوچک که خروجی کمی تولید می‌کنند و روند اجرای کوتاهی دارند میسر باشد، برای برنامه‌های بزرگ‌تر با مسیر اجرای پیچیده کاری دشوار است. برای این کار می‌توان از ابزارهایی که در سیستم‌عامل لینوکس در دسترس است استفاده کرد.
-
-    در حالت عادی، برای ترجمه و اجرای یک برنامه از این دستورها استفاده می‌شود:
-    \begin{latin}%
-    \begin{Verbatim}[fontsize=\small]
-g++ -std=c++11 helloworld.cpp
-./a.out
-    \end{Verbatim}
-    \end{latin}
-
-    در این حالت برنامه ورودی‌اش را از ورودی استاندارد \lr{stdin} (خط فرمان) می‌خواند و خروجی را نیز در خروجی استاندارد \lr{stdout} (صفحه‌ی خط فرمان) می‌نویسد.
-
-    برای اجرای راحت‌تر برنامه، می‌توان ورودی را در پرونده مانند \lr{in.txt} نوشت و سپس محتوای آن را به ورودی استاندارد تغییر مسیر\LTRfootnote{redirect} داد تا هنگام اجرای مکرر برنامه نیازی به نوشتن مکرر ورودی‌های مختلف در خط فرمان نباشد:
-    \begin{latin}%
-    \begin{Verbatim}[fontsize=\small]
-./a.out < in.txt
-    \end{Verbatim}
-    \end{latin}
-
-    همچنین، می‌توان خروجی برنامه را به پرونده‌ای مانند \lr{out.txt} تغییر مسیر داد تا بتوان بعداً هم به آن دسترسی داشت:
-    \begin{latin}%
-    \begin{Verbatim}[fontsize=\small]
-./a.out > out.txt
-    \end{Verbatim}
-    \end{latin}
-
-    ترکیب این دو عمل نیز امکان‌پذیر است:
-    \begin{latin}%
-    \begin{Verbatim}[fontsize=\small]
-./a.out < in.txt > out.txt
-    \end{Verbatim}
-    \end{latin}
-
-    فرض کنیم خروجی مورد انتظار برای ورودی \lr{in.txt} در پرونده‌ای به نام \lr{sol.txt} قرار دارد. می‌توان با استفاده از دستور \lr{\lstinline[language=bash]{diff}} خروجی حاصل از اجرای برنامه را با خروجی مورد انتظار مقایسه کرد.
-
-    برای این کار، ابتدا ورودی را از \lr{in.txt} به برنامه می‌دهیم و خروجی برنامه را در پرونده‌ای مانند \lr{out.txt} ذخیره می‌کنیم. سپس با دستور \lr{\lstinline[language=bash]{diff}} پرونده‌ی \lr{out.txt} را با \lr{sol.txt} مقایسه می‌کنیم.
-    \begin{latin}%
-    \begin{Verbatim}[fontsize=\small]
-g++ -std=c++11 helloworld.cpp
-./a.out < in.txt > out.txt
-diff out.txt sol.txt
-    \end{Verbatim}
-    \end{latin}
-
-    اگر پرونده‌ها یکسان باشند، دستور \lr{\lstinline[language=bash]{diff}} هیچ خروجی‌ای تولید نمی‌کند. وگرنه، تفاوت‌های دو پرونده را نشان می‌دهد.
-
-    هر بخش از خروجی این دستور با شماره‌ی خطوط آغاز می‌شود: شماره‌ی خطوط در پرونده‌ی قدیمی (سمت چپ)، یکی از حروف \lr{\texttt{d}}، \lr{\texttt{a}} یا \lr{\texttt{c}} و شماره‌ی خطوط در پرونده‌ی جدید (سمت راست). حرف میان شماره‌ی خطوط نوع تغییرات را نشان می‌دهد:
-    \begin{description}[leftmargin=8em,style=nextline,font=\labelitemi\quad\bfseries]
-        \item[\lr{\texttt{d}}: حذف~شدن]
-        محتوای محذوف بعد از \lr{\lstinline[language=diff]{<}} نمایش داده می‌شود.
-        \item[\lr{\texttt{a}}: افزوده~شدن]
-        محتوای جدید بعد از \lr{\lstinline[language=diff]{>}} نمایش داده می‌شود.
-        \item[\lr{\texttt{c}}: تغییر]
-        محتوای قدیمی بعد از \lr{\lstinline[language=diff]{<}} نمایش داده می‌شود.
-        سپس خطی شامل \lr{\lstinline[language=diff]{---}} می‌آید.
-        بعد از آن، محتوای جدید بعد از \lr{\lstinline[language=diff]{>}} نمایش داده می‌شود.
-    \end{description}
-
-    به این مثال\LTRfootnote{\url{https://en.wikipedia.org/wiki/Diff}} توجه کنید:
-    \begin{latin}%
-    \centering
-    \begin{minipage}[t]{0.28\textwidth}
-    \VerbatimInput[numbers=left,xleftmargin=10mm,fontsize=\scriptsize,frame=lines,label={\rl{قدیمی}}]{diff-old.txt}
-    \end{minipage}%
-    \begin{minipage}[t]{0.28\textwidth}
-    \VerbatimInput[numbers=left,xleftmargin=10mm,fontsize=\scriptsize,frame=lines,label={\rl{جدید}}]{diff-new.txt}
-    \end{minipage}%
-    \begin{minipage}[t]{0.28\textwidth}
-    \lstinputlisting[xleftmargin=8mm,frame=none,language=diff,basicstyle=\scriptsize\ttfamily\color{Cyan},label={diff}]{diff-res.txt}
-    \end{minipage}
-    \end{latin}    
-
+	\maketitle
+	
+	\section{مفسر زبانچه}
+	
+	هدف این تمرین نوشتن مفسر برای یک زبان برنامه‌نویسی بسیار ساده به نام \textbf{زبانچه} است. مثال زیر یک نمونه‌ای کوچک از برنامه‌های زبانچه است.
+	
+	\begin{latin}
+		\lstinputlisting[numbers=left,frame=leftline,language=zabanche,lastline=7]{testcases/1.in}
+	\end{latin}
+	
+	در زبانچه سه نوع دستور وجود دارد:
+	
+	\begin{description}[leftmargin=6em,style=nextline,font=\labelitemi\quad\bfseries]
+		\item[ورودی]
+		دستور ورودی به شکل \lr{\lstinline[language=zabanche]{? variable}} است که در آن \lr{\lstinline[language=zabanche]{variable}} نام یک متغیر است. اجرای این دستور موجب می‌شود که مفسر منتظر گرفتن یک عدد صحیح از ورودی بماند تا کاربر عدد را وارد کند.
+		\item[خروجی]
+		دستور خروجی به شکل \lr{\lstinline[language=zabanche]{! variable}} است که در آن \lr{\lstinline[language=zabanche]{variable}} نام یک متغیر است. اجرای این دستور موجب می‌شود که مفسر مقدار متغیر مربوطه را در یک خط مجزا در خروجی بنویسد.
+		\item[جایگزینی]
+		شکل این دستور \lr{\lstinline[language=zabanche]{variable = expression}} است که با اجرای آن عبارت \lr{\lstinline[language=zabanche]{expression}} ارزشیابی شده، مقدار آن در متغیر \lr{\lstinline[language=zabanche]{variable}} گذاشته می‌شود.
+	\end{description}
+	
+	عبارت‌ها در زبانچه از ترکیب تعدادی متغیر و عدد ثابت با عملگرهای جمع و تفریق به دست می‌آیند. تمام متغیرها و ثابت‌ها مقدار عدد صحیح دارند. نیازی به تعریف متغیرها نیست و اگر متغیری پیش از این که مقدار بگیرد استفاده شود، به طور پیش‌فرض حاوی مقدار صفر فرض می‌شود. به این ترتیب، اگر به ورودی برنامه‌ی فوق به ترتیب مقادیر ۳ و ۸ داده شود، خروجی برنامه دو عدد ۱۳ و ۱۰ خواهد بود که در دو خط جداگانه نوشته می‌شوند. دقت کنید که مقدار متغیر \lr{n} در خط قبل از آخر برابر صفر در نظر گرفته می‌شود.
+	
+	نام متغیرها در یک برنامه‌ی زبانچه ترکیبی از حروف بزرگ و کوچک و ارقام است و حتماً با یک حرف شروع می‌شود. حروف بزرگ و کوچک متمایز فرض می‌شوند. فرض کنید اعداد ثابت نامنفی هستند و در یک نوع داده‌ی\LTRfootnote{data type} ۳۲‌بیتی جا می‌شوند. در دو طرف اعداد و اسامی متغیرها و عملگرها می‌تواند تعداد دلخواهی (صفر یا بیشتر) فاصله‌ی خالی باشد. هر دستور در یک خط نوشته می‌شود و خط‌های خالی در برنامه نادیده گرفته می‌شوند.
+	
+	برنامه‌ی شما یک برنامه‌ی زبانچه را به همراه یک ورودی برای آن دریافت می‌کند و خروجی برنامه‌ی زبانچه را به ازای آن ورودی مشخص می‌کند.
+	
+	برای نگهداری مقادیر متغیرها می‌توانید از کلاس \lr{\lstinline{map}} که در سرآیند\LTRfootnote{header} \lr{\lstinline{map}} در دسترس است استفاده کنید.
+	برای خواندن یک خط کامل از ورودی نیز می‌توانید از تابع \lr{\lstinline{getline}} در سرآیند \lr{\lstinline{iostream}} کمک بگیرید.
+	
+	\subsection{ورودی}
+	
+	ورودی برنامه دو بخش دارد: برنامه‌ی زبانچه و ورودی برنامه‌ی زبانچه.    
+	بخش اول برنامه‌ی زبانچه است که در انتهای آن خطی وجود دارد که حاوی رشته‌ی \lr{\lstinline[language=zabanche]{run}} است.
+	بعد از این خط ورودی برنامه‌ی زبانچه می‌آید. این ورودی شامل تعدادی خط است که هر کدام حاوی یک عدد صحیح نامنفی است. این اعداد به دستورهای ورودی برنامه‌ی زبانچه داده می‌شوند.
+	
+	پایان ورودی با نویسه‌ی\LTRfootnote{character} پایان فایل (\lr{EOF}) مشخص می‌شود. در خط فرمان لینوکس می‌توانید با ترکیب \lr{Ctrl + D} این نویسه را ارسال کنید.
+	
+	\subsection{خروجی}
+	
+	خروجی برنامه‌ی زبانچه را در خروجی بنویسید.
+	
+	اگر برنامه‌ی زبانچه دارای خطای نحوی باشد \textbf{بدون اجرای برنامه} رشته‌ی \lr{\texttt{Syntax error at line }n} را بنویسید که در آن \lr{n} شماره‌ی اولین خطی از برنامه‌ی زبانچه است که خطا دارد.
+	
+	اگر ورودی برنامه‌ی زبانچه کم‌تر از مواردی که مورد انتظار برنامه است ورودی مشخص کرده باشد، مثلاً در برنامه چهار دستور ورودی است اما ورودی فقط سه عدد را مشخص کرده است، برنامه‌ی زبانچه را تا جایی که امکان دارد اجرا کنید و خروجی‌ها را بنویسید و در انتها رشته‌ی \lr{\texttt{Unexpected end of input}} را در خروجی بنویسید.
+	
+	
+	\subsection{ورودی و خروجی نمونه}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			ورودی نمونه & خروجی نمونه\\
+			\hline
+			\hline
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					{\lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/1.in}}
+			\end{minipage}\end{latin}
+			&
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					\verbatiminput{testcases/1.sol}
+					\begin{verbatim}
+					
+					
+					
+					
+					
+					
+					
+					\end{verbatim}
+			\end{minipage}\end{latin}
+			\\
+			\hline
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					{\lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/2.in}}
+			\end{minipage}\end{latin}
+			&
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					\verbatiminput{testcases/2.sol}
+					\begin{verbatim}
+					
+					
+					
+					
+					\end{verbatim}
+			\end{minipage}\end{latin}
+			\\
+			\hline
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					{\lstinputlisting[numbers=left,language=zabanche,basicstyle=\footnotesize\ttfamily\color{Gray}]{testcases/3.in}}
+			\end{minipage}\end{latin}
+			&
+			\begin{latin}\begin{minipage}[]{0.3\textwidth}\footnotesize
+					\verbatiminput{testcases/3.sol}
+					\begin{verbatim}
+					
+					
+					
+					
+					
+					\end{verbatim}
+			\end{minipage}\end{latin}
+			\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	\section{نحوه‌ی تحویل}
+	
+	برنامه‌ی خود را با نام \lr{A1-SID.cpp} در صفحه‌ی \lr{CECM} درس بارگذاری کنید که \lr{SID} شماره‌ی دانشجویی شماست؛ برای مثال اگر شماره‌ی دانشجویی شما ۸۱۰۱۹۷۹۹۹ باشد، نام پرونده‌ی شما باید \lr{A1-810197999.cpp} باشد.
+	
+	\begin{itemize}
+		\item برنامه‌ی شما باید در سیستم‌عامل لینوکس و با مترجم \lr{g++} با استاندارد \lr{\texttt{c++11}} ترجمه و در زمان معقول برای ورودی‌های آزمون اجرا شود.
+		\item از صحت قالب\LTRfootnote{format} ورودی‌ها و خروجی‌های برنامه‌ی خود مطمئن شوید.
+		\item رعایت سبک برنامه‌نویسی درست و تمیز~بودن برنامه‌ی شما در نمره‌ی تمرین تأثیر زیادی دارد.
+		\item هدف این تمرین یادگیری شماست. لطفاً تمرین را خودتان انجام دهید. در صورت کشف تقلب مطابق قوانین درس با آن برخورد خواهد شد.
+	\end{itemize}
+	
+	\appendix
+	
+	\section{مقایسه‌ی خروجی برنامه با خروجی مورد انتظار\label{sec:diff}}
+	
+	مقایسه‌ی خروجی برنامه با خروجی مورد انتظار با چشم شاید برای برنامه‌های کوچک که خروجی کمی تولید می‌کنند و روند اجرای کوتاهی دارند میسر باشد، برای برنامه‌های بزرگ‌تر با مسیر اجرای پیچیده کاری دشوار است. برای این کار می‌توان از ابزارهایی که در سیستم‌عامل لینوکس در دسترس است استفاده کرد.
+	
+	در حالت عادی، برای ترجمه و اجرای یک برنامه از این دستورها استفاده می‌شود:
+	\begin{latin}%
+		\begin{Verbatim}[fontsize=\small]
+		g++ -std=c++11 helloworld.cpp
+		./a.out
+		\end{Verbatim}
+	\end{latin}
+	
+	در این حالت برنامه ورودی‌اش را از ورودی استاندارد \lr{stdin} (خط فرمان) می‌خواند و خروجی را نیز در خروجی استاندارد \lr{stdout} (صفحه‌ی خط فرمان) می‌نویسد.
+	
+	برای اجرای راحت‌تر برنامه، می‌توان ورودی را در پرونده مانند \lr{in.txt} نوشت و سپس محتوای آن را به ورودی استاندارد تغییر مسیر\LTRfootnote{redirect} داد تا هنگام اجرای مکرر برنامه نیازی به نوشتن مکرر ورودی‌های مختلف در خط فرمان نباشد:
+	\begin{latin}%
+		\begin{Verbatim}[fontsize=\small]
+		./a.out < in.txt
+		\end{Verbatim}
+	\end{latin}
+	
+	همچنین، می‌توان خروجی برنامه را به پرونده‌ای مانند \lr{out.txt} تغییر مسیر داد تا بتوان بعداً هم به آن دسترسی داشت:
+	\begin{latin}%
+		\begin{Verbatim}[fontsize=\small]
+		./a.out > out.txt
+		\end{Verbatim}
+	\end{latin}
+	
+	ترکیب این دو عمل نیز امکان‌پذیر است:
+	\begin{latin}%
+		\begin{Verbatim}[fontsize=\small]
+		./a.out < in.txt > out.txt
+		\end{Verbatim}
+	\end{latin}
+	
+	فرض کنیم خروجی مورد انتظار برای ورودی \lr{in.txt} در پرونده‌ای به نام \lr{sol.txt} قرار دارد. می‌توان با استفاده از دستور \lr{\lstinline[language=bash]{diff}} خروجی حاصل از اجرای برنامه را با خروجی مورد انتظار مقایسه کرد.
+	
+	برای این کار، ابتدا ورودی را از \lr{in.txt} به برنامه می‌دهیم و خروجی برنامه را در پرونده‌ای مانند \lr{out.txt} ذخیره می‌کنیم. سپس با دستور \lr{\lstinline[language=bash]{diff}} پرونده‌ی \lr{out.txt} را با \lr{sol.txt} مقایسه می‌کنیم.
+	\begin{latin}%
+		\begin{Verbatim}[fontsize=\small]
+		g++ -std=c++11 helloworld.cpp
+		./a.out < in.txt > out.txt
+		diff out.txt sol.txt
+		\end{Verbatim}
+	\end{latin}
+	
+	اگر پرونده‌ها یکسان باشند، دستور \lr{\lstinline[language=bash]{diff}} هیچ خروجی‌ای تولید نمی‌کند. وگرنه، تفاوت‌های دو پرونده را نشان می‌دهد.
+	
+	هر بخش از خروجی این دستور با شماره‌ی خطوط آغاز می‌شود: شماره‌ی خطوط در پرونده‌ی قدیمی (سمت چپ)، یکی از حروف \lr{\texttt{d}}، \lr{\texttt{a}} یا \lr{\texttt{c}} و شماره‌ی خطوط در پرونده‌ی جدید (سمت راست). حرف میان شماره‌ی خطوط نوع تغییرات را نشان می‌دهد:
+	\begin{description}[leftmargin=8em,style=nextline,font=\labelitemi\quad\bfseries]
+		\item[\lr{\texttt{d}}: حذف~شدن]
+		محتوای محذوف بعد از \lr{\lstinline[language=diff]{<}} نمایش داده می‌شود.
+		\item[\lr{\texttt{a}}: افزوده~شدن]
+		محتوای جدید بعد از \lr{\lstinline[language=diff]{>}} نمایش داده می‌شود.
+		\item[\lr{\texttt{c}}: تغییر]
+		محتوای قدیمی بعد از \lr{\lstinline[language=diff]{<}} نمایش داده می‌شود.
+		سپس خطی شامل \lr{\lstinline[language=diff]{---}} می‌آید.
+		بعد از آن، محتوای جدید بعد از \lr{\lstinline[language=diff]{>}} نمایش داده می‌شود.
+	\end{description}
+	
+	به این مثال\LTRfootnote{\url{https://en.wikipedia.org/wiki/Diff}} توجه کنید:
+	\begin{latin}%
+		\centering
+		\begin{minipage}[t]{0.28\textwidth}
+			{\VerbatimInput[numbers=left,xleftmargin=10mm,fontsize=\scriptsize,frame=lines,label={\rl{قدیمی}}]{diff-old.txt}}
+		\end{minipage}%
+		\begin{minipage}[t]{0.28\textwidth}
+			{\VerbatimInput[numbers=left,xleftmargin=10mm,fontsize=\scriptsize,frame=lines,label={\rl{جدید}}]{diff-new.txt}}
+		\end{minipage}%
+		\begin{minipage}[t]{0.28\textwidth}
+			\lstinputlisting[xleftmargin=8mm,frame=none,language=diff,basicstyle=\scriptsize\ttfamily\color{Cyan},label={diff}]{diff-res.txt}
+		\end{minipage}
+	\end{latin}    
+	
 \end{document}
