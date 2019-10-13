@@ -32,7 +32,15 @@
     \setmonofont[Scale=0.8]{DejaVu Sans Mono}
     \renewcommand{\labelitemi}{$\circ$}
     \renewcommand{\labelitemii}{$\diamond$}
-    \lstset{
+
+    % ------------- colors ------------------    
+    \definecolor{mygray}{rgb}{0.9,0.9,0.9}
+    \definecolor{fireBrick}{RGB}{163,21,21}
+    \definecolor{darkGreen}{rgb}{0,0.6,0}
+    % --------------------------------------
+
+    %---------------- define cpp style and enviroment -------------
+    \lstdefinestyle{cppStyle}{
         language=C++,
         columns=flexible,
         basicstyle=\small\ttfamily\color{Gray},
@@ -50,6 +58,37 @@
         tabsize=4,
         morecomment=[l][\color{Sepia}]{\#}
     }
+    \lstnewenvironment{cppCode}{\lstset{style=cppStyle}\latin}{\endlatin}
+    %---------------------------------------------------------------
+
+    % ---------------- define terminal style and enviroment ---------
+    \lstdefinestyle{bashStyle}{
+        frame=tb,
+        language=bash,
+        basicstyle={\small\ttfamily},
+        numberstyle=\tiny\color{gray}, 
+        backgroundcolor=\color{mygray},
+        numbers=left,
+        stepnumber=1,        
+        numbersep=10pt,
+        frame=single,
+        tabsize=4,
+        captionpos=b,
+        breaklines=true,
+        breakatwhitespace=true,
+        escapeinside={\%*}{*)},
+        morestring=[b]",
+        morestring=[b]',
+        keywordstyle=\color{blue},
+        commentstyle=\color{darkGreen},
+        stringstyle=\color{fireBrick},
+        rulecolor=\color{gray}
+    }
+    \lstnewenvironment{terminal}{\lstset{style=bashStyle}\latin}{\endlatin \lstset{style=cppStyle}}
+    % -------------------------------------------------------------
+
+    \lstset{style=cppStyle} % set cpp style for whole document
+
     \renewcommand{\maketitle}[0]{
         \clearpage
         {
